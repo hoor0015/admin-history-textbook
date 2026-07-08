@@ -56,6 +56,8 @@ main pre { background:#f6f8fa; border:1px solid #e3e6ea; border-radius:6px;
 main pre code { background:none; padding:0; }
 main blockquote { margin:18px 0; padding:8px 18px; border-left:4px solid #cfc4ad;
   background:#fbfaf7; color:#4b5563; }
+main div[style] { font-size:1.08rem; line-height:1.85; }
+main div[style] strong { font-size:1.02em; }
 .pager { display:flex; justify-content:space-between; margin-top:56px;
   padding-top:18px; border-top:1px solid #e7e3da; font-size:.95rem; }
 .pager a { max-width:46%; }
