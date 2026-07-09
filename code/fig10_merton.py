@@ -1,4 +1,4 @@
-# 9주차 1차시 그림: 머튼의 관료제 역기능 인과 구조
+# 10주차 1차시 그림: 머튼의 관료제 역기능 인과 구조
 # 실행: cd ~/default-uv-env && PYTHONIOENCODING=utf-8 VIRTUAL_ENV= uv run python "<이 파일 경로>"
 from pathlib import Path
 
@@ -27,7 +27,7 @@ def arrow(ax, x1, y1, x2, y2, color="#555", style="-|>", lw=1.6, ls="-"):
                                  mutation_scale=16, color=color, lw=lw, linestyle=ls))
 
 
-# ---------------------------------------------------------------- 그림 9-1
+# ---------------------------------------------------------------- 그림 10-1
 # 머튼의 역기능 인과 구조도 (신뢰성 요구 -> 규율 -> 목표 대치 -> 비효율)
 fig, ax = plt.subplots(figsize=(11, 8))
 ax.set_xlim(0, 14)
@@ -69,6 +69,6 @@ ax.text(12.0, 4.6, "주황: 출발점(성공 조건)\n파랑: 변형 과정\n보
 ax.set_title("머튼의 관료제 역기능 인과 구조: 신뢰성 요구에서 비효율까지", fontsize=13, pad=14)
 
 fig.tight_layout()
-fig.savefig(FIG / "fig09_merton_dysfunction.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIG / "fig10_merton_dysfunction.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
-print("saved:", FIG / "fig09_merton_dysfunction.png")
+print("saved:", FIG / "fig10_merton_dysfunction.png")

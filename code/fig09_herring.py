@@ -1,4 +1,4 @@
-# 8주차 1차시 개념도 생성 (해링: 관료제와 공익)
+# 9주차 1차시 개념도 생성 (해링: 관료제와 공익)
 # 실행: cd ~/default-uv-env && PYTHONIOENCODING=utf-8 VIRTUAL_ENV= uv run python "<이 파일 경로>"
 from pathlib import Path
 
@@ -27,7 +27,7 @@ def arrow(ax, x1, y1, x2, y2, color="#555", style="-|>", lw=1.6, ls="-"):
                                  mutation_scale=16, color=color, lw=lw, linestyle=ls))
 
 
-# ---------------------------------------------------------------- 그림 8-1
+# ---------------------------------------------------------------- 그림 9-1
 # 행정국가 팽창 연표 (1929-1945)
 fig, ax = plt.subplots(figsize=(12.5, 5.6))
 ax.set_xlim(1927.0, 1947.5)
@@ -65,10 +65,10 @@ for yr, label, ypos, fc, ec in events:
         ax.plot([dot_year, yr], [4.8, ypos + BH + 0.12], color=ec, lw=1.1, ls=":")
 
 ax.set_title("행정국가의 팽창 (1929-1945): 위기, 뉴딜, 그리고 제도화", fontsize=13, pad=10)
-fig.savefig(FIG / "fig08_timeline.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIG / "fig09_timeline.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
 
-# ---------------------------------------------------------------- 그림 8-2
+# ---------------------------------------------------------------- 그림 9-2
 # 정치적 합의의 번역자: 관료를 둘러싼 이해관계의 거미줄
 fig, ax = plt.subplots(figsize=(11, 5.8))
 ax.set_xlim(0, 12)
@@ -93,7 +93,7 @@ ax.text(7.0, 2.4, "압력과 반응", fontsize=9.5, color="#555")
 ax.text(1.9, 1.2, "법은 진공 속에서\n집행되지 않는다.", ha="center", fontsize=10.5, color="#333",
         bbox=dict(fc="#fbf8f2", ec="#8a6d3b", boxstyle="round,pad=0.5"))
 ax.set_title("정치적 합의의 번역자: 관료를 둘러싼 이해관계의 거미줄", fontsize=13, pad=10)
-fig.savefig(FIG / "fig08_web.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIG / "fig09_web.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
 
-print("saved:", [p.name for p in sorted(FIG.glob('fig08_*.png'))])
+print("saved:", [p.name for p in sorted(FIG.glob('fig09_*.png'))])

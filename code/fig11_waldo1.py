@@ -1,4 +1,4 @@
-# 10주차 1차시 개념도 생성 (왈도, 행정국가 다시 보기 I)
+# 11주차 1차시 개념도 생성 (왈도, 행정국가 다시 보기 I)
 # 실행: cd ~/default-uv-env && PYTHONIOENCODING=utf-8 VIRTUAL_ENV= uv run python "<이 파일 경로>"
 from pathlib import Path
 
@@ -27,7 +27,7 @@ def arrow(ax, x1, y1, x2, y2, color="#555", style="-|>", lw=1.6, ls="-"):
                                  mutation_scale=16, color=color, lw=lw, linestyle=ls))
 
 
-# ---------------------------------------------------------------- 그림 10-1
+# ---------------------------------------------------------------- 그림 11-1
 # 왈도의 작업 구도: 정치이론의 렌즈로 행정학 읽기
 fig, ax = plt.subplots(figsize=(11, 5.6))
 ax.set_xlim(0, 13)
@@ -61,10 +61,10 @@ ax.text(11.6, 2.2, "저자들은 사실을\n말한다고 믿었지만,\n왈도�
         ha="center", fontsize=10, color="#333",
         bbox=dict(fc="#f7f7fc", ec="#d9d9e3", boxstyle="round,pad=0.5"))
 fig.tight_layout()
-fig.savefig(FIG / "fig10_lens.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIG / "fig11_lens.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
 
-# ---------------------------------------------------------------- 그림 10-2
+# ---------------------------------------------------------------- 그림 11-2
 # 행정학 정통 교리의 토양: 물질적 배경, 이념적 배경, 개혁운동
 fig, ax = plt.subplots(figsize=(11.5, 6.2))
 ax.set_xlim(0, 13)
@@ -96,7 +96,7 @@ box(ax, 2.9, 0.7, 7.2, 1.9,
 ax.text(6.5, 9.75, "왈도가 본 행정학의 토양 (『행정국가』 1부의 구도)",
         ha="center", fontsize=12.5, fontweight="bold")
 fig.tight_layout()
-fig.savefig(FIG / "fig10_background.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIG / "fig11_background.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
 
-print("saved:", [p.name for p in sorted(FIG.glob('fig10_*.png'))])
+print("saved:", [p.name for p in sorted(FIG.glob('fig11_*.png'))])

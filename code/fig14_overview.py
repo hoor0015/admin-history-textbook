@@ -1,4 +1,4 @@
-# 13주차 개념도 생성 (1차시·2차시 공용)
+# 14주차 개념도 생성 (1차시·2차시 공용)
 # 실행: cd ~/default-uv-env && PYTHONIOENCODING=utf-8 VIRTUAL_ENV= uv run python "<이 파일 경로>"
 from pathlib import Path
 
@@ -27,7 +27,7 @@ def arrow(ax, x1, y1, x2, y2, color="#555", style="-|>", lw=1.6, ls="-"):
                                  mutation_scale=16, color=color, lw=lw, linestyle=ls))
 
 
-# ---------------------------------------------------------------- 그림 13-1
+# ---------------------------------------------------------------- 그림 14-1
 # 행정사 전체 연표: 기원에서 전환까지, 시대별 가치의 전환
 fig, ax = plt.subplots(figsize=(14.5, 7.0))
 ax.set_xlim(0, 21)
@@ -67,10 +67,10 @@ for x in (6.9, 13.7, 17.1):
     arrow(ax, x - 0.05, 1.55, x + 0.45, 1.55, color="#555")
 
 fig.tight_layout()
-fig.savefig(FIG / "fig13_timeline.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIG / "fig14_timeline.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
 
-# ---------------------------------------------------------------- 그림 13-2
+# ---------------------------------------------------------------- 그림 14-2
 # 이론과 실천의 상호작용: 문제 -> (제도/이론) -> (이론/제도)의 순환
 fig, ax = plt.subplots(figsize=(13, 7.6))
 ax.set_xlim(0, 13)
@@ -110,10 +110,10 @@ for r, row in enumerate(rows):
 ax.text(6.5, 0.25, "제도의 변화는 새로운 문제를 낳고, 그 문제가 다시 다음 이론을 부른다 (순환)",
         ha="center", fontsize=10.5, color="#555", style="italic")
 fig.tight_layout()
-fig.savefig(FIG / "fig13_interaction.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIG / "fig14_interaction.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
 
-# ---------------------------------------------------------------- 그림 13-3
+# ---------------------------------------------------------------- 그림 14-3
 # 고전 간 대화 지도: 대립과 계승
 fig, ax = plt.subplots(figsize=(13, 9.2))
 ax.set_xlim(0, 13)
@@ -148,10 +148,10 @@ for r, (left, right, kind) in enumerate(heirs):
     ax.text(6.5, y + 0.95, kind, ha="center", fontsize=9.5, color="#2f6fb0")
 
 fig.tight_layout()
-fig.savefig(FIG / "fig13_dialogue.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIG / "fig14_dialogue.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
 
-# ---------------------------------------------------------------- 그림 13-4
+# ---------------------------------------------------------------- 그림 14-4
 # 고전에서 이후의 흐름으로: 신공공관리·거버넌스·공공가치
 fig, ax = plt.subplots(figsize=(12.5, 5.8))
 ax.set_xlim(0, 13)
@@ -173,7 +173,7 @@ for i, (src, dst, fc, ec) in enumerate(streams):
 ax.text(6.5, 0.25, "이름은 바뀌어도 질문은 계속된다: 능률인가 가치인가, 정부 혼자인가 함께인가",
         ha="center", fontsize=10.5, color="#555", style="italic")
 fig.tight_layout()
-fig.savefig(FIG / "fig13_future.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIG / "fig14_future.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
 
-print("saved:", [p.name for p in sorted(FIG.glob("fig13_*.png"))])
+print("saved:", [p.name for p in sorted(FIG.glob("fig14_*.png"))])

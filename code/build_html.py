@@ -15,10 +15,33 @@ BOOK_TITLE = "텍스트로 보는 행정사"
 BOOK_SUBTITLE = "고전 텍스트로 읽는 행정과 행정학의 역사"
 
 PARTS = [
-    ("1부. 행정과 행정학의 역사", range(1, 6)),
-    ("2부. 고전적 행정이론", range(6, 9)),
-    ("3부. 후기 고전이론과 이론적 전환", range(9, 14)),
+    ("1부. 행정과 행정학의 역사", [1, 2, 3, 4, 5]),
+    ("2부. 고전적 행정이론", [6, 7, 9]),
+    ("3부. 후기 고전이론과 이론적 전환", [10, 11, 12, 13, 14]),
 ]
+
+EXAMS = {8: "중간고사", 15: "기말고사"}
+
+
+def display_units():
+    """부 제목·시험 주차·콘텐츠 주차를 화면 순서대로 나열."""
+    emitted = set()
+    for part_title, weeks in PARTS:
+        for ex in sorted(EXAMS):
+            if ex not in emitted and ex < weeks[0]:
+                emitted.add(ex)
+                yield ("exam", ex)
+        yield ("part", part_title)
+        for w in weeks:
+            for ex in sorted(EXAMS):
+                if ex not in emitted and ex < w:
+                    emitted.add(ex)
+                    yield ("exam", ex)
+            yield ("week", w)
+    for ex in sorted(EXAMS):
+        if ex not in emitted:
+            yield ("exam", ex)
+
 
 CSS = """
 :root { --accent:#8a6d3b; --sidebar-w:320px; }
@@ -56,6 +79,9 @@ main pre { background:#f6f8fa; border:1px solid #e3e6ea; border-radius:6px;
 main pre code { background:none; padding:0; }
 main blockquote { margin:18px 0; padding:8px 18px; border-left:4px solid #cfc4ad;
   background:#fbfaf7; color:#4b5563; }
+nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
+  font-weight:700; color:#a33; }
+.toc-exam { margin-top:24px; font-size:1.05rem; font-weight:700; color:#a33; }
 .pager { display:flex; justify-content:space-between; margin-top:56px;
   padding-top:18px; border-top:1px solid #e7e3da; font-size:.95rem; }
 .pager a { max-width:46%; }
@@ -110,12 +136,18 @@ def convert(md_text):
 
 
 def sidebar(chapters, tocs, current):
+    by_week = {}
+    for ch in chapters:
+        by_week.setdefault(ch["week"], []).append(ch)
     items = [f'<h1><a href="index.html">{BOOK_TITLE}</a></h1><ul>']
-    for part_title, weeks in PARTS:
-        items.append(f'<li class="part">{part_title}</li>')
-        for ch in chapters:
-            if ch["week"] not in weeks:
-                continue
+    for kind_, val in display_units():
+        if kind_ == "part":
+            items.append(f'<li class="part">{val}</li>')
+            continue
+        if kind_ == "exam":
+            items.append(f'<li class="exam">{val}주차 · {EXAMS[val]}</li>')
+            continue
+        for ch in by_week.get(val, []):
             tag = (f'<span class="tag t{ch["sess"]}">{ch["sess"]}차시</span>')
             cur = ' cur' if ch["out"] == current else ''
             items.append(f'<li class="chap{cur}"><a href="{ch["out"]}">'
@@ -170,14 +202,22 @@ toc_html = [
     "원전 발췌를 강독하고 그 현대적 의미를 해설합니다.</p>",
     "<p>광운대학교 행정학과 조교수 김경동(kdkim@kw.ac.kr)</p>",
 ]
-for part_title, weeks in PARTS:
-    toc_html.append(f'<h2 class="toc-part">{part_title}</h2><ul>')
-    for ch in chapters:
-        if ch["week"] not in weeks:
-            continue
+by_week = {}
+for ch in chapters:
+    by_week.setdefault(ch["week"], []).append(ch)
+for kind_, val in display_units():
+    if kind_ == "part":
+        toc_html.append(f'<h2 class="toc-part">{val}</h2>')
+        continue
+    if kind_ == "exam":
+        toc_html.append(f'<p class="toc-exam">{val}주차 · {EXAMS[val]}</p>')
+        continue
+    toc_html.append("<ul>")
+    for ch in by_week.get(val, []):
+        label = f'{ch["week"]}주차 {ch["sess"]}차시 · {ch["short"]}' 
         toc_html.append(
             f'<li style="margin-top:10px"><strong><a href="{ch["out"]}">'
-            f'{ch["week"]}주차 {ch["sess"]}차시 · {ch["short"]}</a></strong><ul>')
+            f'{label}</a></strong><ul>')
         for t, hid in tocs[ch["out"]]:
             toc_html.append(f'<li><a href="{ch["out"]}#{hid}">{t}</a></li>')
         toc_html.append("</ul></li>")

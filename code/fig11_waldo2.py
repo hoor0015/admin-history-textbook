@@ -1,4 +1,4 @@
-# 10주차 2차시 개념도 생성 (왈도, 행정국가 다시 보기 II)
+# 11주차 2차시 개념도 생성 (왈도, 행정국가 다시 보기 II)
 # 실행: cd ~/default-uv-env && PYTHONIOENCODING=utf-8 VIRTUAL_ENV= uv run python "<이 파일 경로>"
 from pathlib import Path
 
@@ -27,7 +27,7 @@ def arrow(ax, x1, y1, x2, y2, color="#555", style="-|>", lw=1.6, ls="-"):
                                  mutation_scale=16, color=color, lw=lw, linestyle=ls))
 
 
-# ---------------------------------------------------------------- 그림 10-3
+# ---------------------------------------------------------------- 그림 11-3
 # 정통 교리의 네 전제와 왈도의 해부
 fig, ax = plt.subplots(figsize=(11.5, 5.8))
 ax.set_xlim(0, 13)
@@ -62,10 +62,10 @@ box(ax, 6.9, 0.4, 5.4, 1.8,
 arrow(ax, 5.4, 2.9, 4.2, 2.3)
 arrow(ax, 7.6, 2.9, 8.8, 2.3)
 fig.tight_layout()
-fig.savefig(FIG / "fig10_orthodoxy.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIG / "fig11_orthodoxy.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
 
-# ---------------------------------------------------------------- 그림 10-4
+# ---------------------------------------------------------------- 그림 11-4
 # 능률 대 민주주의: 왈도-사이먼 논쟁 구도
 fig, ax = plt.subplots(figsize=(11.5, 6.4))
 ax.set_xlim(0, 13)
@@ -89,12 +89,12 @@ ax.text(6.5, 6.0, "왈도-사이먼 논쟁\n(1952, APSR)", ha="center", fontsize
         color="#c0392b", fontweight="bold")
 
 box(ax, 2.2, 0.5, 8.6, 1.9,
-    "능률과 민주주의의 긴장은 해소되지 않은 채 남는다\n왈도의 물음은 1968년 미노브룩 회의와 신행정학으로 이어진다 (11주차)",
+    "능률과 민주주의의 긴장은 해소되지 않은 채 남는다\n왈도의 물음은 1968년 미노브룩 회의와 신행정학으로 이어진다 (12주차)",
     fc="#f4fbf6", ec="#2f8f4e", fontsize=11, weight="bold")
 arrow(ax, 3.2, 3.3, 4.6, 2.5)
 arrow(ax, 9.8, 3.3, 8.4, 2.5)
 fig.tight_layout()
-fig.savefig(FIG / "fig10_tension.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIG / "fig11_tension.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
 
-print("saved:", [p.name for p in sorted(FIG.glob('fig10_*.png'))])
+print("saved:", [p.name for p in sorted(FIG.glob('fig11_*.png'))])

@@ -1,4 +1,4 @@
-# 8주차 2차시 개념도 생성 (귤릭: 조직이론과 POSDCORB)
+# 9주차 2차시 개념도 생성 (귤릭: 조직이론과 POSDCORB)
 # 실행: cd ~/default-uv-env && PYTHONIOENCODING=utf-8 VIRTUAL_ENV= uv run python "<이 파일 경로>"
 from pathlib import Path
 
@@ -27,7 +27,7 @@ def arrow(ax, x1, y1, x2, y2, color="#555", style="-|>", lw=1.6, ls="-"):
                                  mutation_scale=16, color=color, lw=lw, linestyle=ls))
 
 
-# ---------------------------------------------------------------- 그림 8-3
+# ---------------------------------------------------------------- 그림 9-3
 # 분업과 조정의 두 경로
 fig, ax = plt.subplots(figsize=(11, 6.2))
 ax.set_xlim(0, 12)
@@ -51,10 +51,10 @@ ax.text(6.0, 1.1, "두 경로는 배타적이지 않다. 둘을 폭넓게 함께
         ha="center", fontsize=11, color="#333",
         bbox=dict(fc="#f7f7fc", ec="#d9d9e3", boxstyle="round,pad=0.5"))
 ax.set_title("분업은 조정을 부른다: 귤릭이 본 조정의 두 경로", fontsize=13, pad=10)
-fig.savefig(FIG / "fig08_coordination.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIG / "fig09_coordination.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
 
-# ---------------------------------------------------------------- 그림 8-4
+# ---------------------------------------------------------------- 그림 9-4
 # POSDCORB 구조도
 fig, ax = plt.subplots(figsize=(12.5, 5.0))
 ax.set_xlim(0, 14)
@@ -81,7 +81,7 @@ for i, (abbr, label, fc, ec) in enumerate(items):
 ax.text(7.0, 0.5, "일곱 요소는 페욜의 기능 분석을 토대로 한 것으로, 규모가 큰 조직에서는 각각을 집행부 안의 하위 부문으로 조직할 수 있다.",
         ha="center", fontsize=10.5, color="#333")
 ax.set_title("POSDCORB: 최고책임자 기능의 일곱 요소", fontsize=13, pad=10)
-fig.savefig(FIG / "fig08_posdcorb.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIG / "fig09_posdcorb.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
 
-print("saved:", [p.name for p in sorted(FIG.glob('fig08_*.png'))])
+print("saved:", [p.name for p in sorted(FIG.glob('fig09_*.png'))])

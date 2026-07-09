@@ -1,4 +1,4 @@
-# 9주차 2차시 그림: 사이먼이 드러낸 상충하는 원리의 쌍들
+# 10주차 2차시 그림: 사이먼이 드러낸 상충하는 원리의 쌍들
 # 실행: cd ~/default-uv-env && PYTHONIOENCODING=utf-8 VIRTUAL_ENV= uv run python "<이 파일 경로>"
 from pathlib import Path
 
@@ -27,7 +27,7 @@ def arrow(ax, x1, y1, x2, y2, color="#555", style="-|>", lw=1.6, ls="-"):
                                  mutation_scale=16, color=color, lw=lw, linestyle=ls))
 
 
-# ---------------------------------------------------------------- 그림 9-2
+# ---------------------------------------------------------------- 그림 10-2
 # 상충하는 원리 쌍 비교도
 fig, ax = plt.subplots(figsize=(11, 8))
 ax.set_xlim(0, 14)
@@ -64,6 +64,6 @@ arrow(ax, 7.0, 3.1, 7.0, 2.4)
 ax.set_title("사이먼이 드러낸 상충하는 원리의 쌍들 (「행정의 격언들」, 1946)", fontsize=13, pad=14)
 
 fig.tight_layout()
-fig.savefig(FIG / "fig09_conflicting_principles.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIG / "fig10_conflicting_principles.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
-print("saved:", FIG / "fig09_conflicting_principles.png")
+print("saved:", FIG / "fig10_conflicting_principles.png")

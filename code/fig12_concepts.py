@@ -1,4 +1,4 @@
-# 12주차 개념도 생성 (그림 12-1, 12-2)
+# 12주차 개념도 생성 (그림 12-1, 11-2, 11-3, 11-4)
 # 실행: cd ~/default-uv-env && PYTHONIOENCODING=utf-8 VIRTUAL_ENV= uv run python "<이 파일 경로>"
 from pathlib import Path
 
@@ -28,88 +28,154 @@ def arrow(ax, x1, y1, x2, y2, color="#555", style="-|>", lw=1.6, ls="-"):
 
 
 # ---------------------------------------------------------------- 그림 12-1
-# 예산개혁의 3단계 연표 (쉬크, 1966)
-fig, ax = plt.subplots(figsize=(12, 5.6))
-ax.set_xlim(1912, 1978)
-ax.set_ylim(0, 10)
-ax.axis("off")
+# 뿌리 방법 vs 가지 방법
+fig, axes = plt.subplots(1, 2, figsize=(12, 6.4))
+for ax in axes:
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 12)
+    ax.axis("off")
 
-# 단계 상자 (위)
-stages = [
-    (1920, 1935, "1단계 통제 지향\n품목별 예산\n(지출의 합법성)", "#fdf9f4", "#c77b2f"),
-    (1935, 1960, "2단계 관리 지향\n성과주의 예산\n(작업의 능률)", "#f4fbf6", "#2f8f4e"),
-    (1960, 1975, "3단계 기획 지향\nPPBS(프로그램 예산)\n(목표와 대안의 선택)", "#f5f9fd", "#2f6fb0"),
+ax = axes[0]
+ax.set_title("(가) 뿌리 방법: 합리적·총체적 접근", fontsize=13, pad=12)
+steps_root = [
+    "모든 관련 가치를 명료화하고\n중요도 순으로 서열화",
+    "가능한 모든 정책대안 탐색",
+    "각 대안의 모든 결과를\n포괄적으로 분석 (이론에 의존)",
+    "목표를 최대로 달성하는\n최적 대안 선택",
 ]
-for x0, x1, label, fc, ec in stages:
-    box(ax, x0 + 0.4, 5.6, x1 - x0 - 0.8, 3.2, label, fc=fc, ec=ec, fontsize=11.5, weight="bold")
-arrow(ax, 1934.7, 7.2, 1936.1, 7.2, color="#777")
-arrow(ax, 1959.7, 7.2, 1961.1, 7.2, color="#777")
+y = 10.2
+for i, t in enumerate(steps_root):
+    box(ax, 1.6, y, 6.8, 1.6, t, fc="#f5f9fd", ec="#2f6fb0", fontsize=10.5)
+    if i < 3:
+        arrow(ax, 5.0, y - 0.15, 5.0, y - 0.85)
+    y -= 2.5
+ax.text(5.0, 1.2, "목표와 수단의 분리 · 처음부터 다시 계산\n요구되는 정보와 계산이 인간의 능력을 넘어선다",
+        ha="center", fontsize=10, color="#333",
+        bbox=dict(fc="#fdf9f4", ec="#c77b2f", boxstyle="round,pad=0.4"))
 
-# 시간축
-ax.plot([1915, 1976], [4.6, 4.6], color="#555", lw=1.6)
-for yr in range(1915, 1980, 5):
-    ax.plot([yr, yr], [4.45, 4.75], color="#555", lw=1.1)
-    ax.text(yr, 4.0, str(yr), ha="center", fontsize=9.5, color="#555")
-
-# 주요 사건 (아래)
-events = [
-    (1921, "1921 예산회계법\n(연방 예산제도 출발)", "#c77b2f"),
-    (1937, "1937 브라운로 위원회\n(관리 기구로의 전환 촉구)", "#2f8f4e"),
-    (1949, "1949 후버 위원회\n(성과주의 예산 권고)", "#2f8f4e"),
-    (1961, "1961 국방부\nPPBS 도입(맥나마라)", "#2f6fb0"),
-    (1965, "1965 존슨,\n전 부처 확대", "#2f6fb0"),
-    (1971, "1971 연방 PPB\n사실상 폐기", "#8a6d3b"),
+ax = axes[1]
+ax.set_title("(나) 가지 방법: 연속적 제한 비교", fontsize=13, pad=12)
+steps_branch = [
+    "현재 정책(현상)에서 출발",
+    "현재와 조금 다른\n소수의 익숙한 대안만 비교",
+    "목표와 수단을 동시에 조정\n(경험이 이론을 대신한다)",
+    "더 넓은 합의에 이른\n대안 선택 (작은 변화)",
 ]
-levels = [2.6, 1.0, 2.6, 1.0, 2.6, 1.0]
-for (yr, label, color), lv in zip(events, levels):
-    ax.plot([yr, yr], [4.6, lv + 0.55], color=color, lw=1.0, ls=":")
-    ax.text(yr, lv, label, ha="center", va="top", fontsize=9.5, color=color)
-
-ax.text(1944, 9.6, "예산개혁의 3단계: 강조점의 이동 (앞 단계의 기능은 사라지지 않고 그 위에 쌓인다)",
-        ha="center", fontsize=12.5, fontweight="bold")
-fig.savefig(FIG / "fig12_budget_stages.png", dpi=150, bbox_inches="tight")
+y = 10.2
+for i, t in enumerate(steps_branch):
+    box(ax, 1.6, y, 6.8, 1.6, t, fc="#f4fbf6", ec="#2f8f4e", fontsize=10.5)
+    if i < 3:
+        arrow(ax, 5.0, y - 0.15, 5.0, y - 0.85)
+    y -= 2.5
+# 순환 화살표: 마지막 단계에서 첫 단계로
+arrow(ax, 8.6, 3.5, 8.6, 10.6, color="#8a6d3b", ls="--")
+ax.text(9.3, 7.0, "다시\n출발\n(연쇄)", ha="center", fontsize=9.5, color="#8a6d3b")
+ax.text(5.0, 1.2, "선택된 작은 변화가 새 출발점이 된다\n비교의 연쇄가 곧 정책결정의 체계다",
+        ha="center", fontsize=10, color="#333",
+        bbox=dict(fc="#fbf8f2", ec="#8a6d3b", boxstyle="round,pad=0.4"))
+fig.tight_layout()
+fig.savefig(FIG / "fig12_root_branch.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
 
 # ---------------------------------------------------------------- 그림 12-2
-# 시스템 분석 대 정책분석 (드로어, 1967)
-fig, ax = plt.subplots(figsize=(12, 6.4))
+# 비교의 연쇄(위)와 상호조정(아래)
+fig, axes = plt.subplots(2, 1, figsize=(11, 7.6))
+for ax in axes:
+    ax.axis("off")
+
+ax = axes[0]
+ax.set_xlim(0, 14)
+ax.set_ylim(0, 6)
+ax.set_title("(가) 비교의 연쇄: 작은 변화의 누적", fontsize=13, pad=10)
+labels = ["현재 정책", "작은 수정 1", "작은 수정 2", "작은 수정 3"]
+for i, t in enumerate(labels):
+    x = 0.5 + i * 3.0
+    box(ax, x, 3.6, 2.4, 1.4, t, fc="#f4fbf6", ec="#2f8f4e", fontsize=10.5)
+    if i < 3:
+        arrow(ax, x + 2.5, 4.3, x + 2.9, 4.3, color="#2f8f4e")
+box(ax, 12.6, 3.6, 1.1, 1.4, "…", fc="white", ec="#2f8f4e", fontsize=13)
+ax.text(6.5, 5.6, "각 단계는 앞 단계에서 축적된 지식을 활용한다", ha="center",
+        fontsize=10, color="#555")
+arrow(ax, 1.7, 3.4, 12.0, 1.5, color="#c0392b", ls="--")
+box(ax, 10.9, 0.4, 2.9, 1.3, "한 번의 큰 도약", fc="#fdf3f2", ec="#c0392b", fontsize=10.5)
+ax.text(5.6, 1.6, "돌이킬 수 없는 큰 실수의 위험", fontsize=10, color="#c0392b",
+        rotation=-8, ha="center")
+
+ax = axes[1]
+ax.set_xlim(0, 14)
+ax.set_ylim(0, 6.6)
+ax.set_title("(나) 상호조정: 분업된 종합성", fontsize=13, pad=10)
+agencies = [("교육 기관", 1.0), ("보건 기관", 5.7), ("경찰 기관", 10.4)]
+for t, x in agencies:
+    box(ax, x, 4.2, 2.6, 1.4, t + "\n(자기 영역의 가치에 집중)", fc="#f5f9fd",
+        ec="#2f6fb0", fontsize=9.8)
+arrow(ax, 3.7, 4.9, 5.6, 4.9, color="#8a6d3b")
+arrow(ax, 5.6, 4.6, 3.7, 4.6, color="#8a6d3b")
+arrow(ax, 8.4, 4.9, 10.3, 4.9, color="#8a6d3b")
+arrow(ax, 10.3, 4.6, 8.4, 4.6, color="#8a6d3b")
+ax.text(4.65, 5.3, "견제·협상", ha="center", fontsize=9, color="#8a6d3b")
+ax.text(9.35, 5.3, "견제·협상", ha="center", fontsize=9, color="#8a6d3b")
+box(ax, 4.2, 0.7, 5.6, 1.7, "전체 정부 수준의 종합성\n(어느 한 기관의 편향도\n다른 기관이 보정한다)",
+    fc="#fbf8f2", ec="#8a6d3b", fontsize=10)
+for _, x in agencies:
+    arrow(ax, x + 1.3, 4.0, 7.0, 2.6, color="#999")
+fig.tight_layout()
+fig.savefig(FIG / "fig12_chain.png", dpi=150, bbox_inches="tight")
+plt.close(fig)
+
+# ---------------------------------------------------------------- 그림 12-3
+# 행정 가치의 세 기둥
+fig, ax = plt.subplots(figsize=(10, 5.6))
 ax.set_xlim(0, 12)
-ax.set_ylim(0, 11)
+ax.set_ylim(0, 9)
 ax.axis("off")
-
-box(ax, 0.6, 9.1, 4.6, 1.3, "시스템 분석\n(경제학·계량적 의사결정 이론)", fc="#fdf9f4", ec="#c77b2f",
-    fontsize=11.5, weight="bold")
-box(ax, 6.8, 9.1, 4.6, 1.3, "정책분석\n(+ 개편된 정치학·행정학)", fc="#f5f9fd", ec="#2f6fb0",
-    fontsize=11.5, weight="bold")
-
-sa = [
-    "모든 결정을 자원 배분 문제로 환원",
-    "계량 모델과 수치에 의존",
-    "정치적 실현 가능성을 무시",
-    "주어진 대안들의 비교",
-    "명확한 기준과 최적해 추구",
+# 지붕
+box(ax, 1.2, 6.6, 9.6, 1.5, "행정 (public administration)", fc="#f7f7fc",
+    ec="#5b6ee1", fontsize=13, weight="bold")
+# 세 기둥
+pillars = [
+    ("능률성\n(efficiency)", "고전 행정학의 가치\n(윌슨 이후)", "#f5f9fd", "#2f6fb0"),
+    ("경제성\n(economy)", "고전 행정학의 가치\n(윌슨 이후)", "#f5f9fd", "#2f6fb0"),
+    ("사회적 형평성\n(social equity)", "신행정학이 추가\n(미노브룩, 1968)", "#fbf8f2", "#8a6d3b"),
 ]
-pa = [
-    "자원 배분을 넘어선 넓은 의사결정 개념",
-    "질적 방법·암묵지·훈련된 직관을 통합",
-    "정치와 가치를 분석의 중심에",
-    "새로운 대안의 창안 (창의성·혁신)",
-    "순차적 결정과 지속적 학습, 미래 지향",
+for i, (t1, t2, fc, ec) in enumerate(pillars):
+    x = 1.6 + i * 3.2
+    box(ax, x, 3.0, 2.6, 3.2, t1, fc=fc, ec=ec, fontsize=11.5, weight="bold")
+    box(ax, x, 1.1, 2.6, 1.5, t2, fc="white", ec=ec, fontsize=9.5)
+ax.text(6.0, 0.3, "세 번째 기둥이 던지는 질문: 이 서비스는 누구를 위한 것인가",
+        ha="center", fontsize=11, color="#333")
+fig.savefig(FIG / "fig12_pillars.png", dpi=150, bbox_inches="tight")
+plt.close(fig)
+
+# ---------------------------------------------------------------- 그림 12-4
+# 격동의 1960년대와 미노브룩 회의 연표
+fig, ax = plt.subplots(figsize=(11.5, 4.6))
+ax.set_xlim(1962.5, 1972.5)
+ax.set_ylim(-3.2, 3.4)
+ax.axis("off")
+ax.axhline(0, color="#555", lw=1.6)
+events = [
+    (1964, 1, "1964\n시민권법 제정"),
+    (1965, -1, "1965\n와츠(로스앤젤레스) 폭동\n'위대한 사회' 입법"),
+    (1967, 1, "1967\n디트로이트 등\n도시 폭동 확산"),
+    (1968, -1, "1968\n킹 목사·로버트 케네디 암살\n베트남전 반대 시위 격화"),
+    (1968.55, 1.15, "1968년 9월\n미노브룩 회의\n(시라큐스대, 왈도 주선)"),
+    (1971, -1, "1971\n『신행정학을 향하여』 출간\n(마리니 편)"),
 ]
-for i, (l, r) in enumerate(zip(sa, pa)):
-    y = 7.5 - i * 1.35
-    box(ax, 0.6, y, 4.6, 1.05, l, fc="white", ec="#c77b2f", fontsize=10)
-    box(ax, 6.8, y, 4.6, 1.05, r, fc="white", ec="#2f6fb0", fontsize=10)
-    arrow(ax, 5.35, y + 0.52, 6.65, y + 0.52, color="#7a5fa8")
-
-ax.text(6.0, 10.35, "혼합(mix)이 아닌 화합물(compound)로", ha="center", va="center",
-        fontsize=10.5, color="#7a5fa8", fontweight="bold")
-arrow(ax, 5.35, 9.75, 6.65, 9.75, color="#7a5fa8", lw=2.2)
-
-box(ax, 3.1, 0.3, 5.8, 1.2, "정책과학(policy sciences)의 기초\n\"과학과 정치 사이의 다리\"",
-    fc="#faf8fc", ec="#7a5fa8", fontsize=10.5)
-arrow(ax, 9.1, 2.05, 7.6, 1.6, color="#7a5fa8")
-fig.savefig(FIG / "fig12_sa_vs_pa.png", dpi=150, bbox_inches="tight")
+for yr, side, label in events:
+    color = "#8a6d3b" if "미노브룩" in label else "#2f6fb0"
+    ax.plot([yr], [0], "o", color=color, ms=8, zorder=3)
+    ax.plot([yr, yr], [0, side * 0.55], color=color, lw=1.2)
+    va = "bottom" if side > 0 else "top"
+    ax.text(yr, side * 0.7, label, ha="center", va=va, fontsize=9.6,
+            color="#333",
+            bbox=dict(fc="#fbf8f2" if "미노브룩" in label else "white",
+                      ec=color, boxstyle="round,pad=0.35", lw=1.1))
+for yr in range(1963, 1973):
+    ax.plot([yr], [0], "|", color="#999", ms=10)
+    ax.text(yr, -0.35, str(yr), ha="center", va="top", fontsize=8.5, color="#777")
+ax.set_title("격동의 1960년대: 미노브룩 회의로 가는 길", fontsize=13, pad=12)
+fig.savefig(FIG / "fig12_sixties.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
 
 print("saved:", [p.name for p in sorted(FIG.glob('fig12_*.png'))])
