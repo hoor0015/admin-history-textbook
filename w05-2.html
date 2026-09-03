@@ -49,13 +49,24 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
   padding-top:18px; border-top:1px solid #e7e3da; font-size:.95rem; }
 .pager a { max-width:46%; }
 .toc-part { margin-top:26px; font-size:1.1rem; }
+button.nav-hide, button.nav-show { cursor:pointer; font:inherit; font-size:.8rem; line-height:1;
+  border:1px solid #d5d9de; border-radius:4px; background:#fff; color:#57606a; padding:5px 9px; }
+button.nav-hide:hover, button.nav-show:hover { border-color:var(--accent); color:var(--accent); }
+button.nav-hide { position:absolute; top:10px; right:10px; }
+button.nav-show { display:none; position:fixed; top:10px; left:10px; z-index:20; }
+nav.sidebar h1 { padding-right:66px; }
+html.nav-collapsed nav.sidebar { display:none; }
+html.nav-collapsed button.nav-show { display:inline-block; }
+html.nav-collapsed main { margin-left:auto; margin-right:auto; }
 @media (max-width: 900px) {
   nav.sidebar { position:static; width:auto; border-right:none; border-bottom:1px solid #e7e3da; }
   main { margin-left:0; padding:24px 20px 60px; }
 }
-</style></head>
+</style>
+<script>try{if(localStorage.getItem('textbook-nav')==='closed')document.documentElement.classList.add('nav-collapsed')}catch(e){}</script></head>
 <body>
-<nav class="sidebar"><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
+<button class="nav-show" type="button" title="목차 펼치기">☰ 목차</button>
+<nav class="sidebar"><button class="nav-hide" type="button" title="목차 접기">◀ 접기</button><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
 <li class="part">1부. 행정과 행정학의 역사</li>
 <li class="chap"><a href="w01-1.html"><span class="tag t1">1차시</span>1주차 강의의 문: 텍스트로 행정사를 읽는다는 것</a></li>
 <li class="chap"><a href="w01-2.html"><span class="tag t2">2차시</span>1주차 행정의 기원 (1): 고대 문명과 행정 국가</a></li>
@@ -281,4 +292,10 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
 <p><strong>5-6. (기말 대비 서술형)</strong> 굿나우가 말하는 정부의 두 기능(국가 의지의 표출과 집행)의 내용을 설명하고, 그가 권력분립 원칙의 극단적 적용을 비판하면서 두 기능의 조화와 정치의 행정 통제를 주장한 논리를 서술하시오. 나아가 윌슨의 이원론과 비교하여 굿나우 이론의 정교화가 어떤 점에서 이루어졌는지 논의하시오.</p>
 <p><strong>5-7. (개념 적용)</strong> 굿나우의 세 당국(사법·집행·행정) 구분을 한국 정부에 적용해 보자. 다음 각각이 어느 당국의 활동에 가장 가까운지 판정하고 이유를 밝혀라. (a) 법원이 과징금 부과처분 취소소송에서 판결을 내린다. (b) 대통령이 국무회의에서 부처 업무보고를 받고 정책 집행 방향을 지시한다. (c) 국세청이 연말정산 환급금을 계산해 지급한다. (d) 통계청이 인구주택총조사를 실시한다.</p>
 <p><strong>5-8. (토론)</strong> 굿나우는 미국 정당이 정치와 행정의 조화를 확보하는 법 외적 장치였다고 분석했다. 오늘날 한국에서 정치와 행정의 조화(또는 통제)는 주로 어떤 통로로 이루어지는가. 공식 통로(국회의 입법·예산·국정감사, 대통령의 인사권)와 비공식 통로(정당, 언론, 여론)를 구분해 보고, 굿나우라면 현재 한국의 통제 방식 가운데 무엇을 "정당한 통제"로, 무엇을 "행정의 세부에 대한 간섭"으로 평가할지 논의해 보라.</p><div class="pager"><span><a href="w05-1.html">← 5주차 1차시. 행정학의 탄생 (3): 윌슨의 행정학 연구 II: 정치와 행정의 분리</a></span><span><a href="w06-1.html">6주차 1차시. 도시문제와 과학적 관리론 (1): 도시행정의 문제 →</a></span></div></main>
+<script>
+(function(){var h=document.documentElement;
+function set(c){h.classList.toggle('nav-collapsed',c);try{localStorage.setItem('textbook-nav',c?'closed':'open')}catch(e){}}
+document.querySelector('.nav-hide').onclick=function(){set(true)};
+document.querySelector('.nav-show').onclick=function(){set(false)};})();
+</script>
 </body></html>

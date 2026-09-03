@@ -49,13 +49,24 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
   padding-top:18px; border-top:1px solid #e7e3da; font-size:.95rem; }
 .pager a { max-width:46%; }
 .toc-part { margin-top:26px; font-size:1.1rem; }
+button.nav-hide, button.nav-show { cursor:pointer; font:inherit; font-size:.8rem; line-height:1;
+  border:1px solid #d5d9de; border-radius:4px; background:#fff; color:#57606a; padding:5px 9px; }
+button.nav-hide:hover, button.nav-show:hover { border-color:var(--accent); color:var(--accent); }
+button.nav-hide { position:absolute; top:10px; right:10px; }
+button.nav-show { display:none; position:fixed; top:10px; left:10px; z-index:20; }
+nav.sidebar h1 { padding-right:66px; }
+html.nav-collapsed nav.sidebar { display:none; }
+html.nav-collapsed button.nav-show { display:inline-block; }
+html.nav-collapsed main { margin-left:auto; margin-right:auto; }
 @media (max-width: 900px) {
   nav.sidebar { position:static; width:auto; border-right:none; border-bottom:1px solid #e7e3da; }
   main { margin-left:0; padding:24px 20px 60px; }
 }
-</style></head>
+</style>
+<script>try{if(localStorage.getItem('textbook-nav')==='closed')document.documentElement.classList.add('nav-collapsed')}catch(e){}</script></head>
 <body>
-<nav class="sidebar"><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
+<button class="nav-show" type="button" title="목차 펼치기">☰ 목차</button>
+<nav class="sidebar"><button class="nav-hide" type="button" title="목차 접기">◀ 접기</button><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
 <li class="part">1부. 행정과 행정학의 역사</li>
 <li class="chap"><a href="w01-1.html"><span class="tag t1">1차시</span>1주차 강의의 문: 텍스트로 행정사를 읽는다는 것</a></li>
 <li class="chap"><a href="w01-2.html"><span class="tag t2">2차시</span>1주차 행정의 기원 (1): 고대 문명과 행정 국가</a></li>
@@ -237,4 +248,10 @@ muddling through를 "우왕좌왕하기"로 옮기면 무능과 혼란의 어감
 <p><strong>12-2. (원전 해석형)</strong> 다음 구절을 읽고 물음에 답하라. "목표의 명료화는 대안 비교의 결과이자 부산물이지, 그에 앞서는 단계가 아니다." 이 문장이 뒤집고 있는 상식적 절차는 무엇인가. 또한 이 주장이 옳다면, "정책 목표를 먼저 명확히 하라"는 흔한 실무 지침은 어떤 의미에서 재해석되어야 하는지 자신의 견해를 밝히시오.</p>
 <p><strong>12-3. (적용형)</strong> 우리나라의 국가 예산 과정(부처의 예산요구, 기획재정부의 심사, 국회 심의)에서 점증주의적이라 할 만한 특징을 두 가지 찾고, 각각이 린드블롬의 어떤 개념(증분적 비교, 합의 기준, 상호조정 등)에 대응하는지 설명해 보라.</p>
 <p><strong>12-4. (비판형)</strong> "기후위기 대응처럼 큰 전환이 필요한 문제에 점증주의는 무책임하다"는 비판이 있다. 이 비판의 논거를 정리한 뒤, 1979년의 린드블롬이라면 어떻게 응답했을지 원전의 논리(큰 실수의 회피, 비교의 연쇄)를 활용해 재구성해 보라.</p><div class="pager"><span><a href="w11-2.html">← 11주차 2차시. 행정국가의 재성찰 (2): 왈도의 행정국가 다시 보기 II: 민주행정을 향하여</a></span><span><a href="w12-2.html">12주차 2차시. 신행정학: 프레드릭슨과 사회적 형평성 →</a></span></div></main>
+<script>
+(function(){var h=document.documentElement;
+function set(c){h.classList.toggle('nav-collapsed',c);try{localStorage.setItem('textbook-nav',c?'closed':'open')}catch(e){}}
+document.querySelector('.nav-hide').onclick=function(){set(true)};
+document.querySelector('.nav-show').onclick=function(){set(false)};})();
+</script>
 </body></html>

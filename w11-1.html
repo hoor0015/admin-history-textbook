@@ -49,13 +49,24 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
   padding-top:18px; border-top:1px solid #e7e3da; font-size:.95rem; }
 .pager a { max-width:46%; }
 .toc-part { margin-top:26px; font-size:1.1rem; }
+button.nav-hide, button.nav-show { cursor:pointer; font:inherit; font-size:.8rem; line-height:1;
+  border:1px solid #d5d9de; border-radius:4px; background:#fff; color:#57606a; padding:5px 9px; }
+button.nav-hide:hover, button.nav-show:hover { border-color:var(--accent); color:var(--accent); }
+button.nav-hide { position:absolute; top:10px; right:10px; }
+button.nav-show { display:none; position:fixed; top:10px; left:10px; z-index:20; }
+nav.sidebar h1 { padding-right:66px; }
+html.nav-collapsed nav.sidebar { display:none; }
+html.nav-collapsed button.nav-show { display:inline-block; }
+html.nav-collapsed main { margin-left:auto; margin-right:auto; }
 @media (max-width: 900px) {
   nav.sidebar { position:static; width:auto; border-right:none; border-bottom:1px solid #e7e3da; }
   main { margin-left:0; padding:24px 20px 60px; }
 }
-</style></head>
+</style>
+<script>try{if(localStorage.getItem('textbook-nav')==='closed')document.documentElement.classList.add('nav-collapsed')}catch(e){}</script></head>
 <body>
-<nav class="sidebar"><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
+<button class="nav-show" type="button" title="목차 펼치기">☰ 목차</button>
+<nav class="sidebar"><button class="nav-hide" type="button" title="목차 접기">◀ 접기</button><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
 <li class="part">1부. 행정과 행정학의 역사</li>
 <li class="chap"><a href="w01-1.html"><span class="tag t1">1차시</span>1주차 강의의 문: 텍스트로 행정사를 읽는다는 것</a></li>
 <li class="chap"><a href="w01-2.html"><span class="tag t2">2차시</span>1주차 행정의 기원 (1): 고대 문명과 행정 국가</a></li>
@@ -229,4 +240,10 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
 <p><strong>11-2. (원전 구절 해석형)</strong> 왈도는 자신의 박사논문이 "폭로(exposé)가 될 터였다"고 썼다. 그가 폭로하려 한 것은 무엇이었으며, 작업 과정에서 그 "폭로"의 태도는 어떻게, 왜 바뀌었는가. 원전의 표현을 인용하며 설명해 보라.</p>
 <p><strong>11-3. (적용)</strong> 왈도는 근본법·진보·능률이 "지하로 내려갔다"고 표현했다. 이 비유의 뜻을 설명하고, 오늘날 한국 행정의 언어(예: 성과, 혁신, 데이터 기반, 효율화) 가운데 지하에서 검증 없이 작동하고 있다고 생각되는 믿음을 하나 골라 그 전제를 드러내 보라.</p>
 <p><strong>11-4. (토론)</strong> 왈도의 최초 문제의식은 전문성과 민주주의의 긴장이었다. 고도의 전문 지식이 필요한 정책 영역(방역, 원자력, 인공지능 규제 등)에서 전문가의 판단과 민주적 결정이 충돌한 사례를 하나 들고, "어느 정도의 민주주의를, 어떤 상황에서, 어떤 방식으로 내주어야 하는가"라는 왈도의 질문에 자신의 답을 논거와 함께 제시해 보라.</p><div class="pager"><span><a href="w10-2.html">← 10주차 2차시. 관료제 다시 보기 (2): 사이먼의 행정의 격언들</a></span><span><a href="w11-2.html">11주차 2차시. 행정국가의 재성찰 (2): 왈도의 행정국가 다시 보기 II: 민주행정을 향하여 →</a></span></div></main>
+<script>
+(function(){var h=document.documentElement;
+function set(c){h.classList.toggle('nav-collapsed',c);try{localStorage.setItem('textbook-nav',c?'closed':'open')}catch(e){}}
+document.querySelector('.nav-hide').onclick=function(){set(true)};
+document.querySelector('.nav-show').onclick=function(){set(false)};})();
+</script>
 </body></html>

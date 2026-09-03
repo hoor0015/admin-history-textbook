@@ -49,13 +49,24 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
   padding-top:18px; border-top:1px solid #e7e3da; font-size:.95rem; }
 .pager a { max-width:46%; }
 .toc-part { margin-top:26px; font-size:1.1rem; }
+button.nav-hide, button.nav-show { cursor:pointer; font:inherit; font-size:.8rem; line-height:1;
+  border:1px solid #d5d9de; border-radius:4px; background:#fff; color:#57606a; padding:5px 9px; }
+button.nav-hide:hover, button.nav-show:hover { border-color:var(--accent); color:var(--accent); }
+button.nav-hide { position:absolute; top:10px; right:10px; }
+button.nav-show { display:none; position:fixed; top:10px; left:10px; z-index:20; }
+nav.sidebar h1 { padding-right:66px; }
+html.nav-collapsed nav.sidebar { display:none; }
+html.nav-collapsed button.nav-show { display:inline-block; }
+html.nav-collapsed main { margin-left:auto; margin-right:auto; }
 @media (max-width: 900px) {
   nav.sidebar { position:static; width:auto; border-right:none; border-bottom:1px solid #e7e3da; }
   main { margin-left:0; padding:24px 20px 60px; }
 }
-</style></head>
+</style>
+<script>try{if(localStorage.getItem('textbook-nav')==='closed')document.documentElement.classList.add('nav-collapsed')}catch(e){}</script></head>
 <body>
-<nav class="sidebar"><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
+<button class="nav-show" type="button" title="목차 펼치기">☰ 목차</button>
+<nav class="sidebar"><button class="nav-hide" type="button" title="목차 접기">◀ 접기</button><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
 <li class="part">1부. 행정과 행정학의 역사</li>
 <li class="chap"><a href="w01-1.html"><span class="tag t1">1차시</span>1주차 강의의 문: 텍스트로 행정사를 읽는다는 것</a></li>
 <li class="chap"><a href="w01-2.html"><span class="tag t2">2차시</span>1주차 행정의 기원 (1): 고대 문명과 행정 국가</a></li>
@@ -223,4 +234,10 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
 <p><strong>5-2. (기말 대비 서술형)</strong> 윌슨의 정치-행정 이원론의 내용을 "기능의 구별, 간섭의 금지, 감독의 유지"라는 세 명제로 정리하여 설명하고, 뉴딜 이후 이원론이 받은 비판과 이에 대한 현대의 재평가를 논의하시오. 답안에는 원전의 구절을 최소 한 곳 인용할 것.</p>
 <p><strong>5-3. (개념 적용)</strong> 다음 각 사례가 윌슨의 틀에서 "정치의 정당한 과업 부여", "정치의 부당한 직무 간섭", "여론의 권위 있는 비평" 중 어디에 해당하는지 판정하고 이유를 밝혀라. (a) 국회가 법률로 새 복지급여의 대상과 예산을 정한다. (b) 집권당 인사가 산하기관의 실무직 채용에 특정 지지자를 앉히라고 요구한다. (c) 언론과 시민단체가 재난 대응 실패의 책임 소재를 따져 묻는다. (d) 주민들이 구청 민원처리 담당자의 업무 처리 순서를 하나하나 지정하라고 요구한다.</p>
 <p><strong>5-4. (토론)</strong> 윌슨은 "투표로 너무 많은 일을 하려 드는 오류"를 경계했다. 오늘날 한국에서 확대되고 있는 주민참여예산, 공론화위원회, 국민청원 같은 직접 참여 제도들은 이 경고에 비추어 어떻게 평가할 수 있는가. 여론이 "권위 있는 비평가"의 몫을 넘어 "간섭꾼"이 되는 경계선은 어디라고 생각하는지, 윌슨의 요리사 비유를 활용해 자신의 견해를 제시해 보라.</p><div class="pager"><span><a href="w04-2.html">← 4주차 2차시. 행정학의 탄생 (2): 윌슨의 행정학 연구 I: 왜 행정을 연구해야 하는가</a></span><span><a href="w05-2.html">5주차 2차시. 행정학의 탄생 (4): 굿나우의 정치와 행정: 이원론의 정교화 →</a></span></div></main>
+<script>
+(function(){var h=document.documentElement;
+function set(c){h.classList.toggle('nav-collapsed',c);try{localStorage.setItem('textbook-nav',c?'closed':'open')}catch(e){}}
+document.querySelector('.nav-hide').onclick=function(){set(true)};
+document.querySelector('.nav-show').onclick=function(){set(false)};})();
+</script>
 </body></html>

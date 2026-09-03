@@ -49,13 +49,24 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
   padding-top:18px; border-top:1px solid #e7e3da; font-size:.95rem; }
 .pager a { max-width:46%; }
 .toc-part { margin-top:26px; font-size:1.1rem; }
+button.nav-hide, button.nav-show { cursor:pointer; font:inherit; font-size:.8rem; line-height:1;
+  border:1px solid #d5d9de; border-radius:4px; background:#fff; color:#57606a; padding:5px 9px; }
+button.nav-hide:hover, button.nav-show:hover { border-color:var(--accent); color:var(--accent); }
+button.nav-hide { position:absolute; top:10px; right:10px; }
+button.nav-show { display:none; position:fixed; top:10px; left:10px; z-index:20; }
+nav.sidebar h1 { padding-right:66px; }
+html.nav-collapsed nav.sidebar { display:none; }
+html.nav-collapsed button.nav-show { display:inline-block; }
+html.nav-collapsed main { margin-left:auto; margin-right:auto; }
 @media (max-width: 900px) {
   nav.sidebar { position:static; width:auto; border-right:none; border-bottom:1px solid #e7e3da; }
   main { margin-left:0; padding:24px 20px 60px; }
 }
-</style></head>
+</style>
+<script>try{if(localStorage.getItem('textbook-nav')==='closed')document.documentElement.classList.add('nav-collapsed')}catch(e){}</script></head>
 <body>
-<nav class="sidebar"><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
+<button class="nav-show" type="button" title="목차 펼치기">☰ 목차</button>
+<nav class="sidebar"><button class="nav-hide" type="button" title="목차 접기">◀ 접기</button><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
 <li class="part">1부. 행정과 행정학의 역사</li>
 <li class="chap"><a href="w01-1.html"><span class="tag t1">1차시</span>1주차 강의의 문: 텍스트로 행정사를 읽는다는 것</a></li>
 <li class="chap"><a href="w01-2.html"><span class="tag t2">2차시</span>1주차 행정의 기원 (1): 고대 문명과 행정 국가</a></li>
@@ -231,4 +242,10 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
 <p><strong>10-6. (서술형 연습)</strong> 귤릭의 원리 행정학에 대한 사이먼의 비판을 (1) 격언 판정의 논거, (2) 명령통일과 전문화의 충돌 사례, (3) "원리에서 기준으로"의 재구성이라는 세 단계로 나누어 설명하고, 이 비판이 이후 행정학의 연구 방법에 가져온 변화를 논의하시오.</p>
 <p><strong>10-7. (사례 적용)</strong> 최근의 정부조직 개편 논쟁 사례를 하나 골라(예: 특정 기능을 어느 부처에 둘 것인가), 2.5절의 세 가지 검문 질문(용어의 판별 가능성, 상충 원리의 검토, 의사결정 배분 변화의 증거)을 적용해 그 개편론을 평가하시오.</p>
 <p><strong>10-8. (두 텍스트 비교)</strong> 머튼의 「관료제의 구조와 성격」과 사이먼의 「행정의 격언들」은 모두 고전이론을 비판하지만 방법이 다르다. 두 텍스트가 각각 무엇을(비판 대상), 어떻게(비판 방법) 겨냥했는지 비교하고, "레드테이프"라는 같은 현상을 두 사람이 각각 어떤 원인으로 설명하는지 대조하시오.</p><div class="pager"><span><a href="w10-1.html">← 10주차 1차시. 관료제 다시 보기 (1): 머튼의 관료제의 구조와 성격</a></span><span><a href="w11-1.html">11주차 1차시. 행정국가의 재성찰 (1): 왈도의 행정국가 다시 보기 I: 시대와 사상 →</a></span></div></main>
+<script>
+(function(){var h=document.documentElement;
+function set(c){h.classList.toggle('nav-collapsed',c);try{localStorage.setItem('textbook-nav',c?'closed':'open')}catch(e){}}
+document.querySelector('.nav-hide').onclick=function(){set(true)};
+document.querySelector('.nav-show').onclick=function(){set(false)};})();
+</script>
 </body></html>

@@ -49,13 +49,24 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
   padding-top:18px; border-top:1px solid #e7e3da; font-size:.95rem; }
 .pager a { max-width:46%; }
 .toc-part { margin-top:26px; font-size:1.1rem; }
+button.nav-hide, button.nav-show { cursor:pointer; font:inherit; font-size:.8rem; line-height:1;
+  border:1px solid #d5d9de; border-radius:4px; background:#fff; color:#57606a; padding:5px 9px; }
+button.nav-hide:hover, button.nav-show:hover { border-color:var(--accent); color:var(--accent); }
+button.nav-hide { position:absolute; top:10px; right:10px; }
+button.nav-show { display:none; position:fixed; top:10px; left:10px; z-index:20; }
+nav.sidebar h1 { padding-right:66px; }
+html.nav-collapsed nav.sidebar { display:none; }
+html.nav-collapsed button.nav-show { display:inline-block; }
+html.nav-collapsed main { margin-left:auto; margin-right:auto; }
 @media (max-width: 900px) {
   nav.sidebar { position:static; width:auto; border-right:none; border-bottom:1px solid #e7e3da; }
   main { margin-left:0; padding:24px 20px 60px; }
 }
-</style></head>
+</style>
+<script>try{if(localStorage.getItem('textbook-nav')==='closed')document.documentElement.classList.add('nav-collapsed')}catch(e){}</script></head>
 <body>
-<nav class="sidebar"><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
+<button class="nav-show" type="button" title="목차 펼치기">☰ 목차</button>
+<nav class="sidebar"><button class="nav-hide" type="button" title="목차 접기">◀ 접기</button><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
 <li class="part">1부. 행정과 행정학의 역사</li>
 <li class="chap"><a href="w01-1.html"><span class="tag t1">1차시</span>1주차 강의의 문: 텍스트로 행정사를 읽는다는 것</a></li>
 <li class="chap"><a href="w01-2.html"><span class="tag t2">2차시</span>1주차 행정의 기원 (1): 고대 문명과 행정 국가</a></li>
@@ -231,4 +242,10 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
 <p><strong>7-6. 네 가지 가정 비판.</strong> 화이트의 네 가지 가정 가운데 오늘날 가장 흔들리고 있다고 생각하는 것 하나를 골라, 그렇게 판단한 근거를 현대 행정의 사례와 함께 제시하라. 반대로 가장 굳건히 살아남았다고 생각하는 가정도 하나 골라 이유를 밝히라.</p>
 <p><strong>7-7. 기말 대비 서술형.</strong> 화이트 『행정학 입문』의 네 가지 가정을 서술하고, 이 책이 관리 중심 행정학의 성립과 행정학 교육의 제도화에 미친 영향을 베버의 관료제 이론과의 관계를 포함하여 논의하시오.</p>
 <p><strong>7-8. 두 텍스트의 대화.</strong> 베버는 관료제화를 피할 수 없는 운명으로 진단하면서 쇠우리의 위험을 경고했고, 화이트는 민주국가가 관료제의 장점을 적극 받아들여야 한다고 처방했다. 두 태도의 차이가 어디에서 오는지(학자의 역할에 대한 생각, 유럽과 미국이라는 맥락, 진단과 처방이라는 목적의 차이 등) 토론해 보라. 여러분이 오늘의 한국에서 글을 쓴다면 어느 쪽에 더 가까운 태도를 취하겠는가.</p><div class="pager"><span><a href="w07-1.html">← 7주차 1차시. 관료제의 형성 (1): 베버의 관료제: 이념형과 지배의 정당성</a></span><span><a href="w09-1.html">9주차 1차시. 행정국가의 제도화 (1): 해링의 관료제와 공익 →</a></span></div></main>
+<script>
+(function(){var h=document.documentElement;
+function set(c){h.classList.toggle('nav-collapsed',c);try{localStorage.setItem('textbook-nav',c?'closed':'open')}catch(e){}}
+document.querySelector('.nav-hide').onclick=function(){set(true)};
+document.querySelector('.nav-show').onclick=function(){set(false)};})();
+</script>
 </body></html>

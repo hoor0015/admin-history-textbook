@@ -49,13 +49,24 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
   padding-top:18px; border-top:1px solid #e7e3da; font-size:.95rem; }
 .pager a { max-width:46%; }
 .toc-part { margin-top:26px; font-size:1.1rem; }
+button.nav-hide, button.nav-show { cursor:pointer; font:inherit; font-size:.8rem; line-height:1;
+  border:1px solid #d5d9de; border-radius:4px; background:#fff; color:#57606a; padding:5px 9px; }
+button.nav-hide:hover, button.nav-show:hover { border-color:var(--accent); color:var(--accent); }
+button.nav-hide { position:absolute; top:10px; right:10px; }
+button.nav-show { display:none; position:fixed; top:10px; left:10px; z-index:20; }
+nav.sidebar h1 { padding-right:66px; }
+html.nav-collapsed nav.sidebar { display:none; }
+html.nav-collapsed button.nav-show { display:inline-block; }
+html.nav-collapsed main { margin-left:auto; margin-right:auto; }
 @media (max-width: 900px) {
   nav.sidebar { position:static; width:auto; border-right:none; border-bottom:1px solid #e7e3da; }
   main { margin-left:0; padding:24px 20px 60px; }
 }
-</style></head>
+</style>
+<script>try{if(localStorage.getItem('textbook-nav')==='closed')document.documentElement.classList.add('nav-collapsed')}catch(e){}</script></head>
 <body>
-<nav class="sidebar"><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
+<button class="nav-show" type="button" title="목차 펼치기">☰ 목차</button>
+<nav class="sidebar"><button class="nav-hide" type="button" title="목차 접기">◀ 접기</button><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
 <li class="part">1부. 행정과 행정학의 역사</li>
 <li class="chap"><a href="w01-1.html"><span class="tag t1">1차시</span>1주차 강의의 문: 텍스트로 행정사를 읽는다는 것</a></li>
 <li class="chap"><a href="w01-2.html"><span class="tag t2">2차시</span>1주차 행정의 기원 (1): 고대 문명과 행정 국가</a></li>
@@ -194,4 +205,10 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
 <p><strong>4-2. (원전 해석형)</strong> 이튼은 "실적제는 정당정치와 정당의 건전한 활동을 없애자는 것이 아니다. 더 큰 역량과 더 높은 품성을 공직에 불러들임으로써 정당정치를 오히려 더 순수하고 효율적으로 만든다"고 썼다. 이 구절에서 이튼이 반박하려 한 반대 논리는 무엇이었을지 추론하고, 실적제와 정당정치가 공존할 수 있다는 그의 주장이 성립하기 위한 조건을 설명해 보라.</p>
 <p><strong>4-3. (토론형)</strong> 원전은 실적제 출현의 동인으로 경제적·정치적·도덕적 요인을 제시하며 어느 하나로 환원하기를 거부한다. 세 요인 중 무엇이 가장 결정적이었다고 생각하는지 근거를 들어 토론해 보라. 또한 "도덕적 동기는 경제적·정치적 동기를 가리는 외피가 되기 쉽다"는 원전의 지적이 오늘날의 제도 개혁 논쟁에도 적용될 수 있는 사례를 하나 찾아보라.</p>
 <p><strong>4-4. (적용형)</strong> 1990년대 이후 미국 여러 주는 공무원 신분보장을 줄이고 임의고용을 확대했다. 19세기의 개혁(후견주의 척결)과 20세기 말의 개혁(경직성 척결)이 각각 어떤 문제를 겨냥했는지 비교하고, 한국의 공무원 인사제도 개혁 논의(성과주의 확대, 신분보장 완화 등)에 주는 시사점을 이야기해 보라.</p><div class="pager"><span><a href="w03-2.html">← 3주차 2차시. 국가목적과 합리성 (2): 클라우제비츠의 전쟁론</a></span><span><a href="w04-2.html">4주차 2차시. 행정학의 탄생 (2): 윌슨의 행정학 연구 I: 왜 행정을 연구해야 하는가 →</a></span></div></main>
+<script>
+(function(){var h=document.documentElement;
+function set(c){h.classList.toggle('nav-collapsed',c);try{localStorage.setItem('textbook-nav',c?'closed':'open')}catch(e){}}
+document.querySelector('.nav-hide').onclick=function(){set(true)};
+document.querySelector('.nav-show').onclick=function(){set(false)};})();
+</script>
 </body></html>

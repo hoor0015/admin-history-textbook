@@ -49,13 +49,24 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
   padding-top:18px; border-top:1px solid #e7e3da; font-size:.95rem; }
 .pager a { max-width:46%; }
 .toc-part { margin-top:26px; font-size:1.1rem; }
+button.nav-hide, button.nav-show { cursor:pointer; font:inherit; font-size:.8rem; line-height:1;
+  border:1px solid #d5d9de; border-radius:4px; background:#fff; color:#57606a; padding:5px 9px; }
+button.nav-hide:hover, button.nav-show:hover { border-color:var(--accent); color:var(--accent); }
+button.nav-hide { position:absolute; top:10px; right:10px; }
+button.nav-show { display:none; position:fixed; top:10px; left:10px; z-index:20; }
+nav.sidebar h1 { padding-right:66px; }
+html.nav-collapsed nav.sidebar { display:none; }
+html.nav-collapsed button.nav-show { display:inline-block; }
+html.nav-collapsed main { margin-left:auto; margin-right:auto; }
 @media (max-width: 900px) {
   nav.sidebar { position:static; width:auto; border-right:none; border-bottom:1px solid #e7e3da; }
   main { margin-left:0; padding:24px 20px 60px; }
 }
-</style></head>
+</style>
+<script>try{if(localStorage.getItem('textbook-nav')==='closed')document.documentElement.classList.add('nav-collapsed')}catch(e){}</script></head>
 <body>
-<nav class="sidebar"><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
+<button class="nav-show" type="button" title="목차 펼치기">☰ 목차</button>
+<nav class="sidebar"><button class="nav-hide" type="button" title="목차 접기">◀ 접기</button><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
 <li class="part">1부. 행정과 행정학의 역사</li>
 <li class="chap"><a href="w01-1.html"><span class="tag t1">1차시</span>1주차 강의의 문: 텍스트로 행정사를 읽는다는 것</a></li>
 <li class="chap"><a href="w01-2.html"><span class="tag t2">2차시</span>1주차 행정의 기원 (1): 고대 문명과 행정 국가</a></li>
@@ -281,4 +292,10 @@ PPBS의 좌초를 쉬크 분석 틀의 실패로 읽으면 곤란하다. 오히�
 <p><strong>13-2. (원전 구절 해석)</strong> 쉬크는 비어드를 빌려 "예산개혁은 그것이 태어난 시대의 흔적을 지닌다"고 썼다. 뉴욕시립연구국이 기능별 분류의 장점을 알면서도 품목별 통제를 선택한 일화를 이 구절로 해석하고, 품목별 예산이 당대에는 왜 합리적인 선택이었는지 설명하시오.</p>
 <p><strong>13-3. (앞 주차와의 연결)</strong> 12주차에서 읽은 린드블롬이 쉬크의 이 논문을 읽었다면, "점증적 선택에서 목적 지향적 선택으로"라는 PPB의 전망에 어떻게 반박했을지 점증주의의 논리로 구성해 보시오. 그리고 1971년 PPBS의 좌초가 그 반박을 얼마나 뒷받침하는지 평가하시오.</p>
 <p><strong>13-4. (현재로 잇기)</strong> 한국의 프로그램 예산제도에서 통제·관리·기획의 세 기능이 각각 어떤 제도적 장치(예: 품목 분류, 성과지표, 국가재정운용계획 등)에 남아 있는지 찾아보고, 쉬크의 "다목적 예산 시스템" 이상에 비추어 평가해 보시오.</p><div class="pager"><span><a href="w12-2.html">← 12주차 2차시. 신행정학: 프레드릭슨과 사회적 형평성</a></span><span><a href="w13-2.html">13주차 2차시. 정책분석: 드로어의 정책분석가: 새로운 전문직 →</a></span></div></main>
+<script>
+(function(){var h=document.documentElement;
+function set(c){h.classList.toggle('nav-collapsed',c);try{localStorage.setItem('textbook-nav',c?'closed':'open')}catch(e){}}
+document.querySelector('.nav-hide').onclick=function(){set(true)};
+document.querySelector('.nav-show').onclick=function(){set(false)};})();
+</script>
 </body></html>

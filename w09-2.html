@@ -49,13 +49,24 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
   padding-top:18px; border-top:1px solid #e7e3da; font-size:.95rem; }
 .pager a { max-width:46%; }
 .toc-part { margin-top:26px; font-size:1.1rem; }
+button.nav-hide, button.nav-show { cursor:pointer; font:inherit; font-size:.8rem; line-height:1;
+  border:1px solid #d5d9de; border-radius:4px; background:#fff; color:#57606a; padding:5px 9px; }
+button.nav-hide:hover, button.nav-show:hover { border-color:var(--accent); color:var(--accent); }
+button.nav-hide { position:absolute; top:10px; right:10px; }
+button.nav-show { display:none; position:fixed; top:10px; left:10px; z-index:20; }
+nav.sidebar h1 { padding-right:66px; }
+html.nav-collapsed nav.sidebar { display:none; }
+html.nav-collapsed button.nav-show { display:inline-block; }
+html.nav-collapsed main { margin-left:auto; margin-right:auto; }
 @media (max-width: 900px) {
   nav.sidebar { position:static; width:auto; border-right:none; border-bottom:1px solid #e7e3da; }
   main { margin-left:0; padding:24px 20px 60px; }
 }
-</style></head>
+</style>
+<script>try{if(localStorage.getItem('textbook-nav')==='closed')document.documentElement.classList.add('nav-collapsed')}catch(e){}</script></head>
 <body>
-<nav class="sidebar"><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
+<button class="nav-show" type="button" title="목차 펼치기">☰ 목차</button>
+<nav class="sidebar"><button class="nav-hide" type="button" title="목차 접기">◀ 접기</button><h1><a href="index.html">텍스트로 보는 행정사</a></h1><ul>
 <li class="part">1부. 행정과 행정학의 역사</li>
 <li class="chap"><a href="w01-1.html"><span class="tag t1">1차시</span>1주차 강의의 문: 텍스트로 행정사를 읽는다는 것</a></li>
 <li class="chap"><a href="w01-2.html"><span class="tag t2">2차시</span>1주차 행정의 기원 (1): 고대 문명과 행정 국가</a></li>
@@ -276,4 +287,10 @@ nav.sidebar li.exam { margin-top:12px; margin-left:6px; font-size:.88rem;
 <p><strong>9-6. (기말 대비 서술형)</strong> 귤릭의 조직이론에서 분업과 조정의 관계를 설명하고, 조정의 두 경로(조직에 의한 조정, 아이디어의 지배에 의한 조정)가 현대 정부조직에서 각각 어떤 제도로 나타나는지 예를 들어 논의하시오. 아울러 "이 둘은 배타적이지 않다"는 귤릭의 명제가 조직 설계에 주는 함의를 서술하시오.</p>
 <p><strong>9-7. (원리의 적용과 충돌)</strong> 어느 시 정부가 "결재 단계가 너무 많아 일이 느리다"는 진단에 따라 중간 계층을 두 개 없앴다고 하자. 통솔범위의 원리에 비추어 이 개편이 가져올 부작용을 예측하고, 귤릭의 세 변수(기능의 다양성, 시간, 공간)를 사용해 어떤 부서에서 부작용이 크고 어떤 부서에서 작을지 분석해 보라.</p>
 <p><strong>9-8. (텍스트 연결)</strong> 1차시의 해링은 공익 판단이 결국 각 공무원의 주관적 해석에 달려 있다고 보았고, 2차시의 귤릭은 "전문가의 제자리는 수중이지 정상이 아니다"라며 전문가의 최종 결정권을 부정했다. 두 주장을 연결하면 행정국가에서 "누가, 무엇을 근거로 최종 판단을 내려야 하는가"에 대해 어떤 그림이 그려지는가. 두 텍스트의 근거를 인용하며 자신의 답을 구성해 보라.</p><div class="pager"><span><a href="w09-1.html">← 9주차 1차시. 행정국가의 제도화 (1): 해링의 관료제와 공익</a></span><span><a href="w10-1.html">10주차 1차시. 관료제 다시 보기 (1): 머튼의 관료제의 구조와 성격 →</a></span></div></main>
+<script>
+(function(){var h=document.documentElement;
+function set(c){h.classList.toggle('nav-collapsed',c);try{localStorage.setItem('textbook-nav',c?'closed':'open')}catch(e){}}
+document.querySelector('.nav-hide').onclick=function(){set(true)};
+document.querySelector('.nav-show').onclick=function(){set(false)};})();
+</script>
 </body></html>
